@@ -4,7 +4,7 @@ module.exports = function isAuthenticated(req, res, next) {
         console.log("isAuthenticated middleware called");
       return next();
     }
-    res.redirect('/login');
+    res.redirect('/MiddleWarErrorlogin');
   };
   
 

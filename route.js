@@ -22,6 +22,15 @@ router.get('/patientLogin', (req, res) => {
 });
 
 
+router.get('/bookAppSuccessfull', (req, res) => {
+  res.render('bookAppSuccessfull');
+});
+router.get('/contact', (req, res) => {
+  res.render('contact');
+});
+
+
+
 router.get('/signup', (req, res) => {
   res.render('signup');
 });
@@ -99,7 +108,9 @@ router.get('/patient/appointments', isAuthenticated, async (req, res) => {
 
 router.post('/bookAppointment', isAuthenticated, async (req, res) => {
   try {
-    const { patientName, doctor, dateTime, reason,patientId } = req.body;
+    const { patientName, doctor, date, time, reason, patientId } = req.body;
+
+    // Combine date and time to create a DateTime object
 
     // Assuming you have patientId generated during signup or elsewhere
     // const { patientId } = req.user;
@@ -107,7 +118,8 @@ router.post('/bookAppointment', isAuthenticated, async (req, res) => {
     const newAppointment = new Appointment({
       patientName,
       doctor,
-      dateTime,
+      date,
+      time,
       reason,
       userId: req.user._id,
       patientId, // Include patientId here
@@ -115,13 +127,12 @@ router.post('/bookAppointment', isAuthenticated, async (req, res) => {
 
     await newAppointment.save();
     // console.log("Reports :",reports)
-    res.redirect('/patientDashboard?success=Appointment booked successfully');
+    res.redirect('/bookAppSuccessfull');
   } catch (error) {
     console.error('Error during appointment booking:', error);
     res.redirect('/patientDashboard?error=Error booking appointment');
   }
 });
-
 
 router.get('/appointmentHistory', isAuthenticated, async (req, res) => {
   try {

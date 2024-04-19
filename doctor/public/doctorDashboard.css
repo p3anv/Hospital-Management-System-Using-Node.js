@@ -125,3 +125,37 @@ select {
         cursor: pointer;
     }
 }
+
+
+    /* Style for the search input */
+    #searchInputPatients, #searchInputReports, #searchInputAppointments{
+        padding: 8px 12px; /* Adjust padding as needed */
+        border: 1px solid #ccc; /* Border color */
+        border-radius: 4px; /* Rounded corners */
+        font-size: 16px; /* Font size */
+        width: 300px; /* Width of the input field */
+        margin-bottom: 20px; /* Margin bottom for spacing */
+    }
+
+    /* Style for the placeholder text */
+    #searchInputPatients, #searchInputReports, #searchInputAppointments::placeholder {
+        color: #999; /* Placeholder text color */
+    }
+
+    /* Style for the input when it has focus */
+    #searchInputPatients, #searchInputReports, #searchInputAppointments:focus {
+        outline: none; /* Remove default focus outline */
+        border-color: #66afe9; /* Border color on focus */
+        box-shadow: 0 0 5px #66afe9; /* Add a shadow on focus */
+    }
+
+
+    .search-input {
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 300px; /* Adjust width as needed */
+        box-sizing: border-box;
+        font-size: 16px;
+    }

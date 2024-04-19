@@ -22,24 +22,62 @@
         };
 
             // Function to filter patients based on search input
-            function searchPatients() {
-                const input = document.getElementById('searchInput').value.toUpperCase();
-                const table = document.getElementById('patientTable');
-                const rows = table.getElementsByTagName('tr');
-    
-                for (let i = 0; i < rows.length; i++) {
-                    const nameColumn = rows[i].getElementsByTagName('td')[0];
-                    if (nameColumn) {
-                        const nameText = nameColumn.textContent || nameColumn.innerText;
-                        if (nameText.toUpperCase().indexOf(input) > -1) {
-                            rows[i].style.display = '';
-                        } else {
-                            rows[i].style.display = 'none';
-                        }
-                    }
-                }
+            // Function to filter patients based on search input
+function searchPatients() {
+    const inputAppointments = document.getElementById('searchInputAppointments').value.toUpperCase();
+    const inputReports = document.getElementById('searchInputReports').value.toUpperCase();
+    const inputPatients = document.getElementById('searchInputPatients').value.toUpperCase();
+
+    // Filtering appointments
+    const tableAppointments = document.getElementById('appointmentHistory');
+    const rowsAppointments = tableAppointments.getElementsByTagName('tr');
+    for (let i = 0; i < rowsAppointments.length; i++) {
+        const nameColumn = rowsAppointments[i].getElementsByTagName('td')[0];
+        if (nameColumn) {
+            const nameText = nameColumn.textContent || nameColumn.innerText;
+            if (nameText.toUpperCase().indexOf(inputAppointments) > -1) {
+                rowsAppointments[i].style.display = '';
+            } else {
+                rowsAppointments[i].style.display = 'none';
             }
+        }
+    }
+
+    // Filtering reports
+    const tableReports = document.getElementById('report');
+    const rowsReports = tableReports.getElementsByTagName('tr');
+    for (let i = 0; i < rowsReports.length; i++) {
+        const nameColumn = rowsReports[i].getElementsByTagName('td')[0];
+        if (nameColumn) {
+            const nameText = nameColumn.textContent || nameColumn.innerText;
+            if (nameText.toUpperCase().indexOf(inputReports) > -1) {
+                rowsReports[i].style.display = '';
+            } else {
+                rowsReports[i].style.display = 'none';
+            }
+        }
+    }
+
+    // Filtering patients
+    const tablePatients = document.getElementById('patientTable');
+    const rowsPatients = tablePatients.getElementsByTagName('tr');
+    for (let i = 0; i < rowsPatients.length; i++) {
+        const nameColumn = rowsPatients[i].getElementsByTagName('td')[0];
+        if (nameColumn) {
+            const nameText = nameColumn.textContent || nameColumn.innerText;
+            if (nameText.toUpperCase().indexOf(inputPatients) > -1) {
+                rowsPatients[i].style.display = '';
+            } else {
+                rowsPatients[i].style.display = 'none';
+            }
+        }
+    }
+}
+
         
+
+            const currentDate = new Date().toISOString().split("T")[0];
+            document.getElementById("date").setAttribute("min", currentDate);
 
     </script>
 
@@ -72,15 +110,16 @@
 
         <div id="appointmentHistory" style="display: none;">
             <h3>Appointments</h3>
+            <input type="text" id="searchInputAppointments" oninput="searchPatients()" placeholder="Search by patient name">
 
             <% if (appointments && appointments.length > 0) { %>
             <table border="1">
                 <thead>
                     <tr>
                         <th>Patient Name</th>
-                        <th>Patient ID</th>
                         
-                        <th>Date and Time</th>
+                        <th>Date</th>
+                        <th>Time</th>
                         <th>Reason</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -90,8 +129,8 @@
                     <% appointments.forEach(appointment => { %>
                     <tr>
                         <td><%= appointment.patientName %></td>
-                        <td><%= appointment.patientId %></td>
-                        <td><%= appointment.dateTime %></td>
+                        <td><%= new Date(appointment.date).toLocaleDateString() %></td>
+                        <td><%= appointment.time %></td>
                         <td><%= appointment.reason %></td>
                         <td class="<%= appointment.status %>"><%= appointment.status %></td>
                         <td>
@@ -116,13 +155,14 @@
 
         <div id="report" style="display: none;">
             <h3>Generate Report</h3>
+            <input type="text" id="searchInputReports" oninput="searchPatients()" placeholder="Search by patient name">
             <% if (appointments && appointments.length > 0) { %>
             <table border="1">
                 <thead>
                     <tr>
                         <th>Patient Name</th>
-                        <th>Patient ID</th>
-                        <th>Date and Time</th>
+                        <th>Date</th>
+                        <th>Time</th>
                         <th>Reason</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -132,8 +172,9 @@
                     <% appointments.forEach(appointment => { %>
                     <tr>
                         <td><%= appointment.patientName %></td>
-                        <td><%= appointment.patientId %></td>
-                        <td><%= appointment.dateTime %></td>
+
+                        <td><%= new Date(appointment.date).toLocaleDateString() %></td>
+                        <td><%= appointment.time %></td>
                         <td><%= appointment.reason %></td>
                         <td class="<%= appointment.status %>"><%= appointment.status %></td>
                         <td>
@@ -172,16 +213,17 @@
 
         <div id="patientHistory" style="display: block;">
             <h2>Patient History</h2>
-
+        
             <!-- Search input field -->
-            <input type="text" id="searchInput" oninput="searchPatients()" placeholder="Search by patient name">
-
+            <input type="text" id="searchInputPatients" oninput="searchPatients()" placeholder="Search by patient name">
+        
             <!-- Table to display patient history -->
             <table id="patientTable" border="1">
                 <thead>
                     <tr>
                         <th>Patient Name</th>
                         <th>Patient ID</th>
+                        <th>Actions</th> <!-- New column for actions -->
                     </tr>
                 </thead>
                 <tbody>
@@ -190,14 +232,19 @@
                     <tr>
                         <td><%= user.fullName %></td>
                         <td><%= user.patientId %></td>
+                        <td>
+                            <!-- Button to show previous reports -->
+                            <form action="/patient/<%= user.patientId %>/reports" method="GET">
+                                <input type="hidden" name="patientId" value="<%= user.patientId %>">
+                                <button type="submit">Show Previous Reports</button>
+                            </form>                            
+                        </td>
                     </tr>
                     <% }); %>
                 </tbody>
             </table>
-
-            <!-- Button to show report history -->
-            <button onclick="toggleReportHistory()">Show Report History</button>
         </div>
+        
 
         
         

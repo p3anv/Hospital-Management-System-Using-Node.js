@@ -1,163 +1,325 @@
+<!-- dashboard.ejs -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Dashboard</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body>
-    <div id="sidebar">
-        <ul>
-            <li><a href="#" onclick="toggleSection('userInfo')">Dashboard</a></li>
-            <li><a href="#" onclick="toggleSection('bookAppointment')">Book Appointment</a></li>
-            <li><a href="#" onclick="toggleSection('appointmentHistory')">Appointment History</a></li>
-            <li><a href="#" onclick="toggleSection('reports')">Report</a></li>
-            <li><a href="/logout">Logout</a></li>
-        </ul>
+    <!-- NAVBAR -->
+    <div class="side_bar">
+        <% const currentDate = new Date().toISOString().split("T")[0]; %>
+   
+        <div class="logo">UnityMed Hospital</div>
+     
+      <ul>
+           
+            <li><a href="#"><i class="fas fa-question-circle"></i>About</a></li>
+            <li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
+            <li id="contact"><a><i class="fas fa-phone-volume"></i>Contact</a></li>
+            <li><a href="#"><i class="fas fa-comments"></i>Feedback</a></li>
+          </ul>
+          <!-- <div class="media_icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div> -->
     </div>
-    <div id="content">
 
-        <div id="userInfo" style="display: block;">
-            <p><strong>Username:</strong>
-                <%= user.username %>
-            </p>
-            <p><strong>Patient ID:</strong>
-                <%= user.patientId %>
-            </p>
-            <p><strong>Email:</strong>
-                <%= user.email %>
-            </p>
-            <p><strong>Full Name:</strong>
-                <%= user.fullName %>
-            </p>
-            <p><strong>Phone Number:</strong>
-                <%= user.phone %>
-            </p>
-            <p><strong>Date of Birth:</strong>
-                <%= user.dob.toLocaleDateString('en-GB') %>
-            </p>
-            <p><strong>Gender:</strong>
-                <%= user.gender %>
-            </p>
+    <!-- ----------------------------SIDE HAMBURHER NAVBAR----------------------------------------------------- -->
+    <nav role="navigation">
+        <div id="menuToggle">
+
+            <input type="checkbox" />
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul id="menu" >
+                <li>
+                    <a href="#" class="sidebar-link" data-option="dashboard">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-link" data-option="bookAppointment">Book Appointment</a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-link" data-option="appointmentHistory">Appointment History</a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-link" data-option="reports">Reports</a>
+                </li>
+                <li>
+                    <a href="/logout">Logout</a>
+                </li>
+
+            </ul>
         </div>
+    </nav>
 
-        <div id="bookAppointment" style="display: none;">
-            <h2>Book Appointment</h2>
-            <form action="/bookAppointment" method="POST">
-                <h2>Appointment Form</h2>
+    <div id="main-content">
+        <section>
+            <div id="userInfo">
+                <h1>Welcome to the Dashboard</h1>
+                <p><strong>Username:</strong>
+                    <%= user.username %>
+                </p>
+                <p><strong>Patient ID:</strong>
+                    <%= user.patientId %>
+                </p>
+                <p><strong>Email:</strong>
+                    <%= user.email %>
+                </p>
+                <p><strong>Full Name:</strong>
+                    <%= user.fullName %>
+                </p>
+                <p><strong>Phone Number</strong>
+                    <%= user.phone %>
+                </p>
+                <p><strong>Date of Birth:</strong>
+                    <%= user.dob.toLocaleDateString('en-GB') %>
+                </p>
+                <p><strong>Gender:</strong>
+                    <%= user.gender %>
+                </p>
 
-                <div class="form-group">
-                    <label for="patientName">Patient Name:</label>
-                    <input type="text" id="patientName" name="patientName" value="<%= user.fullName %>"
-                        readonly>
-                </div>
+            </div>
+        </section>
 
-                <div class="form-group">
-                    <label for="doctor">Select Doctor:</label>
-                    <select id="doctor" name="doctor" required>
-                        <option value="pranav">pranav</option>
-                        <option value="Vaishnavi">Vaishnavi</option>
-                        <option value="Onkar">Onkar</option>
-                    </select>
-                </div>
 
-                <div class="form-group">
-                    <label for="dateTime">Select Date and Time:</label>
-                    <input type="datetime-local" id="dateTime" name="dateTime" required>
-                </div>
+        <section>
+            <div id="bookAppointment">
 
-                <div class="form-group">
-                    <label for="reason">Reason for Appointment:</label>
-                    <textarea id="reason" name="reason" rows="4" required></textarea>
-                </div>
-                <div class="form-group">
-                    <!-- <label for="reason">Reason for Appointment:</label> -->
-                    <input type="text" id="patientId" name="patientId" value="<%= user.patientId %>"
-                        readonly>
-                </div>
+                <h2>Book Appointment</h2>
+                <form action="/bookAppointment" method="POST">
+                    <!-- <h2 class="center">Appointment Form</h2> -->
 
-                <button type="submit">Submit Appointment</button>
-            </form>
-        </div>
+                    <div class="form-group">
+                        <label for="patientName">Patient Name:</label>
+                        <input type="text" id="patientName" name="patientName" value="<%= user.fullName %>" readonly>
+                    </div>
 
-        <div id="appointmentHistory" style="display: none;">
-            <h2>Appointment History</h2>
-            <% if (appointments && appointments.length> 0) { %>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Doctor</th>
-                        <th>Date and Time</th>
-                        <th>Reason</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% appointments.forEach(appointment=> { %>
-                    <tr>
-                        <td><%= appointment.doctor %></td>
-                        <td><%= appointment.dateTime.toLocaleString() %></td>
-                        <td><%= appointment.reason %></td>
-                        <td><%= appointment.status %></td>
-                    </tr>
-                    <% }); %>
-                </tbody>
-            </table>
-            <% } else { %>
-            <p>No appointment history available.</p>
-            <% } %>
-        </div>
+                    <div class="form-group">
+                        <label for="doctor">Select Doctor:</label>
+                        <select id="doctor" name="doctor" required>
+                            <option value="tjs">Dr. Tejas Patil -------- Denstistry </option>
+                            <option value="atharva">Dr.Atharva Patil ------ Orthopedic</option>
+                            <option value="anurag">Dr.Anurag Deshpande-------- Cardiologist</option>
+                            <option value="jeffery">Dr.Jeffery Dahmar -------- Nephrologist</option>
+                            <option value="pranav">Dr.Pranav  -------- Radiologist</option>
+                        </select>
+                    </div>
 
-        <div id="reports" style="display: none;">
-            <h2>Reports</h2>
-            <% if (reports && reports.length > 0) { %>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Diagnosis</th>
-                    <th>Treatment</th>
-                    <th>Prescriptions</th>
-                    <th>Notes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% reports.forEach(reportArray => { %>
-                    <% reportArray.forEach(report => { %>
+                    <div class="form-group">
+                        <label for="date">Select Date:</label>
+                        <input type="date" id="date" name="date" min="<%= currentDate %>" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="time">Select Time Slot:</label>
+                        <select id="time" name="time" required>
+                            <!-- Time slots will be dynamically generated here -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reason">Reason for Appointment:</label>
+                        <textarea id="reason" name="reason" rows="4" required></textarea>
+                    </div>
+
+                    <button type="submit">Submit Appointment</button>
+                </form>
+            </div>
+        </section>
+
+        <section>
+
+            <div id="appointmentHistory">
+                <h2>Appointment History</h2>
+
+                <% if (appointments && appointments.length> 0) { %>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Doctor</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% appointments.forEach(appointment=> { %>
+                                <tr>
+                                    <td>
+                                        <%= appointment.doctor %>
+                                    </td>
+                                    <td><%= new Date(appointment.date).toLocaleDateString() %></td>
+
+
+                                    <td>
+                                        <%= appointment.time %>
+                                    </td>
+                                    
+                                    <td>
+                                        <%= appointment.reason %>
+                                    </td>
+                                    <td>
+                                        <%= appointment.status %>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                    <% } else { %>
+                        <p>No appointment history available.</p>
+                        <% } %>
+            </div>
+
+        </section>
+
+        <section>
+            <div id="reports" style="display: none;">
+                <h2>Reports</h2>
+                <% if (reports && reports.length > 0) { %>
+                  <table>
+                    <thead>
                       <tr>
-                        <td><%= report.diagnosis %></td>
-                        <td><%= report.treatment %></td>
-                        <td><%= report.prescriptions %></td>
-                        <td><%= report.notes %></td>
+                        <th>Diagnosis</th>
+                        <th>Treatment</th>
+                        <th>Prescriptions</th>
+                        <th>Notes</th>
                       </tr>
-                    <% }); %>
-                  <% }); %>
-                </tbody>
-              </table>
-            <% } else { %>
-              <p>No reports available.</p>
-            <% } %>
-          </div>
-          
+                    </thead>
+                    <tbody>
+                      <% reports.forEach(reportArray => { %>
+                        <% reportArray.forEach(report => { %>
+                          <tr>
+                            <td><%= report.diagnosis %></td>
+                            <td><%= report.treatment %></td>
+                            <td><%= report.prescriptions %></td>
+                            <td><%= report.notes %></td>
+                          </tr>
+                        <% }); %>
+                      <% }); %>
+                    </tbody>
+                  </table>
+                <% } else { %>
+                  <p>No reports available.</p>
+                <% } %>
+              </div>
+              
+    
+    
+            
+            </div>
+        </section>
+        <footer>
+            <div class="container">
+              <div class="footer-content">
+                <div class="footer-section about">
+                  <h2>About Us</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br> Sed sit
+                    amet justo libero.
+                  </p>
+                </div>
+                <div class="footer-section contact">
+                  <h2>Contact Us</h2>
+                  <p>Email: unitymed@hospital.com</p>
+                  <p>Phone: +1234567890</p>
+                </div>
+                <div class="footer-section links">
+                  <h2>Quick Links</h2>
+                  <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Doctor</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="./contact.ejs">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="footer-bottom">
+                &copy; 2024 Multispecialty Hospital Management System
+              </div>
+            </div>
+          </footer>
 
 
-        
-        </div>
-
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        const toggleSection = (option) => {
-            const sections = document.querySelectorAll('#content > div');
-            sections.forEach(section => {
-                if (section.id === option) {
-                    section.style.display = 'block';
-                } else {
-                    section.style.display = 'none';
+        document.getElementById('contact').addEventListener('click', function () {
+            window.location.href = 'contact'; 
+        });
+
+
+
+        // -----------------------------------------------------------------------------------------
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to toggle the visibility of dashboard sections
+            function toggleDashboardSection(option) {
+                var userInfo = document.getElementById('userInfo');
+                var bookAppointment = document.getElementById('bookAppointment');
+                var appointmentHistory = document.getElementById('appointmentHistory');
+                var prescription = document.getElementById('reports');
+
+                // Hide all sections
+                userInfo.style.display = 'none';
+                bookAppointment.style.display = 'none';
+                appointmentHistory.style.display = 'none';
+                prescription.style.display = 'none';
+
+                // Show the selected section
+                if (option === 'dashboard') {
+                    userInfo.style.display = 'block';
+                } else if (option === 'bookAppointment') {
+                    bookAppointment.style.display = 'block';
+                } else if (option === 'appointmentHistory') {
+                    appointmentHistory.style.display = 'block';
+                } else if (option === 'reports') {
+                    prescription.style.display = 'block';
                 }
+            }
+
+            // Add event listeners to dashboard links for toggling sections
+            document.querySelectorAll('.sidebar-link').forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    var option = event.target.getAttribute('data-option');
+                    toggleDashboardSection(option);
+                });
             });
-        };
+        });
+
+
+        function generateTimeSlots() {
+            const selectTime = document.getElementById("time");
+            const times = ["09:00", "12:00", "15:00"]; // Example time slots
+            
+            times.forEach(time => {
+                const option = document.createElement("option");
+                option.text = time;
+                option.value = time;
+                selectTime.add(option);
+            });
+        }
+    
+        // Set min attribute to current date
+        const currentDate = new Date().toISOString().split("T")[0];
+        document.getElementById("date").setAttribute("min", currentDate);
+    
+        // Call function to generate time slots
+        generateTimeSlots();
     </script>
+
 </body>
 
 </html>

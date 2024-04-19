@@ -58,7 +58,7 @@ mongoose.connect(uri, {
 });
 passport.use(new LocalStrategy(
   function (username, password, done) {
-    console.log('Attempting authentication for doctor:', username);
+    console.log('Attempting authentication for Admin :', username);
     Doctor.findOne({ username: username }).exec()
       .then(user => {
         console.log('User found:', user);

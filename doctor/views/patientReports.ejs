@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Report</title>
+    <!-- Add your CSS link or styles here -->
+</head>
+
+<body>
+    <h1>Previous Reports for <%= patient.fullName %></h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Doctor</th>
+                <th>Diagnosis</th>
+                <th>Treatment</th>
+                <th>Prescriptions</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% reports.forEach(report => { %>
+            <tr>
+                <td><%= report.dateTime.toLocaleDateString() %></td>
+                <td><%= report.doctor %></td>
+                <td><%= report.diagnosis %></td>
+                <td><%= report.treatment %></td>
+                <td><%= report.prescriptions %></td>
+                <td><%= report.notes %></td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+
+</html>

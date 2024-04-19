@@ -8,6 +8,7 @@ const shortid = require('shortid');
 const Report = require('./models/report');
 const ObjectId = require('mongoose').Types.ObjectId;
 const Doctor = require('./models/doctor');
+const Admin = require('./models/admin')
 
 // console.log(require('fs').readdirSync(path.join(__dirname, '../middleware')));
 const isAuthenticated = require('./middleware/isAuthenticated'); // Adjust the path accordingly
@@ -15,7 +16,7 @@ const isAuthenticated = require('./middleware/isAuthenticated'); // Adjust the p
 
 
 router.get('/', (req, res) => {
-  res.render('adminDashbaord.ejs');
+  res.render('adminLogin');
 });
 
 router.get('/addPatient', (req, res) => {
@@ -36,6 +37,10 @@ router.get('/removePatient', (req, res) => {
 
 router.get('/signup-success', (req, res) => {
   res.render('signup-success');
+});
+
+router.get('/adminSignup', (req, res) => {
+  res.render('/adminSignup');
 });
 
 router.post('/pateintSignup', (req, res) => {
@@ -93,6 +98,36 @@ router.post('/doctorSignup', async (req, res) => {
     res.status(500).send("Error saving doctor to the database");
   }
 });
+
+router.post('/signup', (req, res) => {
+  const newUser = new Admin({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    fullName: req.body.fullName,
+  });
+
+
+
+  newUser.save()
+    .then(() => {
+      console.log(typeof(newUser))
+      console.log(req.body);
+      res.send("admin sginup succesfull")
+      
+
+    })
+    .catch((err) => {
+      console.error(err);
+      if (err.code === 11000) {
+        // Duplicate key error (unique constraint violation)
+        return res.status(400).send("Username or email already exists.");
+      }
+      res.status(500).send("Error saving user to the database");
+   });
+});
+
+
 
 
 

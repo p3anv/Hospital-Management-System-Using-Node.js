@@ -1,128 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UnityMed Hospital</title>
-    <!-- custom css file link  -->
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital</title>
+  </head>
+  <link rel="stylesheet" href="./hospital.css" />
+  <link rel="stylesheet" href="./footer.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 
-</head>
-<body>
-    
-
-
-
-
-<!-- NAVBAR -->
-
-<nav class="navbar">
-        <div class="logo">UnityMed Hospital</div>
-        <ul class="nav-links">
-          <input type="checkbox" id="checkbox_toggle"/>
-          <label for="checkbox_toggle" class="hamburger">&#9776;</label>
-          <!-- NAVIGATION MENUS -->
-          <div class="menu">
-            <li id="homeButton">Home</li>
-            <li id="homeButton"><a>Home</a></li>
-            <li id="doctorButton"><a>Doctor?</a></li>
-  
-            <li class"services">
-            <a href="#">Services</a>
-            <ul class="dropdown">
-              <li><a href="#">Dropdown1</a></li>
-              <li><a href="#">Dropdown2</a></li>
-              <li><a href="#">Dropdown3</a></li>
-              <li><a href="#">Dropdown4</a></li>
-            </ul>
-          </li>
-            
-            <li><a href="/">Contact</a></li>
-          </div>
+  <body>
+    <header>
+      <!-- navbar -->
+      <nav>
+        <h3>UnityMed Hospital</h3>
+        <!-- nav links -->
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Doctor</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
         </ul>
-</nav>
+      </nav>
+      <hr />
+
+      <div class="header_main">
+        <div class="H_m_left">
+          <h1>UnityMed <br />Hospital</h1>
+        <!-- </div>
+        <div class="H_m_right"><img src="./Photos/Designer.png" alt=""></div>
+      </div> -->
+    </header>
+
+    <!-- section for displaying first feature -->
     
+  <section class="intro">
+    <!-- HOME -->
+    <div class="content">
+      <div class="textBox">
+        <h2>We are Here <br>For Your <span><br>HEALTHY HEALTH</span></span></h2>
+        <h2>Your Trusted Partner in Health and Healing</h2>
 
-</div>
-    <img class="banner" src="src/banner.png" alt="">
-
-
-
-
-<section class="intro">
-        <!-- HOME -->
-        <div class="content">
-          <div class="textBox">
-          <h2>We are Here <br>For Your  <span><br>HEALTHY HEALTH</span></span></h2>
-          <h2>Your Trusted Partner in Health and Healing</h2>
-    
-          <p class="lorem">UnityMed Hospital stands as a beacon of comprehensive healthcare, melding cutting-edge expertise with unwavering compassion. Our state-of-the-art facility embodies a harmonious blend of advanced medical care and a patient-centric approach. Committed to fostering unity in health, we prioritize individual well-being, offering a diverse spectrum of services tailored to each unique journey. Through a dedicated team of skilled professionals, we ensure a nurturing environment that transcends mere treatment, fostering holistic healing and empowerment. At UnityMed, we embrace diversity, championing inclusivity in our pursuit of delivering exceptional, accessible healthcare, forging a community where every life finds solace and support.</p>
-        </div>
-        <div class="imgBox">
-          <img src="src/img1.jpg" class="img1">
-        </div>
+        <p class="lorem">UnityMed Hospital stands as a beacon of comprehensive healthcare, melding cutting-edge
+          expertise with unwavering compassion. Our state-of-the-art facility embodies a harmonious blend of advanced
+          medical care and a patient-centric approach. Committed to fostering unity in health, we prioritize individual
+          well-being, offering a diverse spectrum of services tailored to each unique journey. Through a dedicated team
+          of skilled professionals, we ensure a nurturing environment that transcends mere treatment, fostering holistic
+          healing and empowerment. At UnityMed, we embrace diversity, championing inclusivity in our pursuit of
+          delivering exceptional, accessible healthcare, forging a community where every life finds solace and support.
+        </p>
       </div>
-</section >
-    
-
-<section class="btn-sec">
-    <button type="button" class="appointment_button" id="signupButton">Book an appointment here</button>
-    <button type="button" class="contact_us" id="loginButton">Login Here</button>
+      <div class="imgBox">
+        <img src="Photos/sidebyside.jpg" class="img1">
+      </div>
+    </div>
   </section>
 
-<section class="skils">
 
-  <h1 class="skill-head"><br>What we offer</h1>
-  <div class="grid-container">
-    <div class="grid-item">
-      <img src="src/heart.png" alt="Icon 1">
-        <p>Cardiology</p>
-    </div>
-    <div class="grid-item"> 
-      <img src="src/knee.png" alt="Icon 1">
-        <p>Orthopedic</p>
-    </div>
-    <div class="grid-item">
-      <img src="src/brain.png" alt="Icon 1">
-        <p>Neurosurgery</p>
-    </div>
-    <div class="grid-item">
-      <img src="src/x-ray.png" alt="Icon 1">
-        <p>Radiology</p>
-    </div>
-    <div class="grid-item">
-      <img src="src/kidney.png" alt="Icon 1">
-        <p>Nephrology</p>
-    </div>
-    <div class="grid-item">
-      <img src="src/tooth.png" alt="Icon 1">
-        <p>Denstistry</p>
-    </div>
-  </div>
-</section>
+  <section class="btn-sec">
+    <button type="button" class="appointment_button" id="signupButton">Book an appointment here</button>
+    <button type="button" class="contact_us" id="loginButton">Login Here</button>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-      // Redirect to patient login page
-      document.getElementById('loginButton').addEventListener('click', function () {
-          window.location.href = '/patientLogin'; 
+
+  </section>
+
+    <!-- Main section 2 -->
+    <section class="cards-wrapper-section">
+      <h1>What we offer</h1>
+
+      <div class="cards-wrapper">
+        <div class="card">
+          <img src="./Photos/1_OIG4.VM.jpeg" alt="cardImage1" />
+          <div class="card-box">
+            <div>
+              <h3>Cardiology</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="./Photos/2_OIG3.jpeg" alt="cardImage2" />
+          <div class="card-box">
+            <div>
+              <h3>Orthopedic</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="./Photos/3_OIG4..jpeg" alt="cardImage3" />
+          <div class="card-box">
+            <div>
+              <h3>Neurosurgery</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="./Photos/4_OIG4.jpeg" alt="cardImage4" />
+          <div class="card-box">
+            <div>
+              <h3>Radiology</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="./Photos/5_OIG1.jpeg" alt="cardImage5" />
+          <div class="card-box">
+            <div>
+              <h3>Nephrology</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="./Photos/6_OIG1.jpeg" alt="cardImage6" />
+          <div class="card-box">
+            <div>
+              <h3>Denstistry</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="teacher" class="team-member contaienr-fluid">
+      <div class="container">
+        <div class="session-title">
+          <h2>Our Staffs</h2>
+          <p>Meet our warriors, who saves number of lives everyday</p>
+        </div>
+        <div class="row teamro">
+          <div class="row1">
+            <div class="col-md-3 mb-5 col-sm-6">
+              <div class="our-team">
+                <div class="pic">
+                  <img src="./Photos/Doctor_1.jpg" />
+                </div>
+                <h3 class="title">Williamson</h3>
+                <span class="post">Cardiology</span>
+              </div>
+            </div>
+            <div class="col-md-3 mb-5 col-sm-6">
+              <div class="our-team">
+                <div class="pic">
+                  <img src="./Photos/Doctor_2.jpg" />
+                </div>
+                <h3 class="title">Kristiana</h3>
+                <span class="post">Orthopedic</span>
+              </div>
+            </div>
+
+            <div class="col-md-3 mb-5 col-sm-6">
+              <div class="our-team">
+                <div class="pic">
+                  <img src="./Photos/Doctor_3.jpg" />
+                </div>
+                <h3 class="title">Anderson</h3>
+                <span class="post">Neurosurgery</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row2">
+            <div class="col-md-3 mb-5 col-sm-6">
+              <div class="our-team">
+                <div class="pic">
+                  <img src="./Photos/Doctor_3.jpg" />
+                </div>
+                <h3 class="title">Anderson</h3>
+                <span class="post">Neurosurgery</span>
+              </div>
+            </div>
+
+            <div class="col-md-3 mb-5 col-sm-6">
+              <div class="our-team">
+                <div class="pic">
+                  <img src="./Photos/Doctor_3.jpg" />
+                </div>
+                <h3 class="title">Anderson</h3>
+                <span class="post">Neurosurgery</span>
+              </div>
+            </div>
+
+            <div class="col-md-3 mb-5 col-sm-6">
+              <div class="our-team">
+                <div class="pic">
+                  <img src="./Photos/Doctor_4.jpg" />
+                </div>
+                <h3 class="title">Deitry Mayani</h3>
+                <span class="post">Radiology</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="feedback" class="team-feedback contaienr-feedback">
+      <div class="container-feed">
+        <div class="feedback-title">
+          <h2>Patient Testimonials</h2>
+        </div>
+        <div class="row-fb teamro-fb">
+          <div class="row1-fb">
+            <div class="col-md-3-fb mb-5-fb1 col-sm-6-fb">
+              <div class="patient-left">
+                <div class="p-name-date">
+                  <strong>Ajay Sawale </strong>
+                  <span>Mar 27, 2024</span>
+                </div>
+              </div>
+              <div class="patient-right">
+                <div class="our-team-fb">
+                  <div class="pic">
+                    <h2>Ajay Sawale | UnityMed</h2>
+                    <p>I got appointment for Dr. Suraj Nair for throat infection. I must say OPD department is very well organised and knowledgeable specially Shraddha madam in OPD helped me so much..thank u shraddha madam for your help and support. Thank you fortis hospital kalyan</p>
+                  </div>
+                  <div class="btn-doc-pat">
+                    <div class="doc-pat">
+                      <span>Treated BY: Dr. Suraj Nair</span>
+                    </div>
+                    <div class="doc-pat1">
+                      <span>ENT | UnityMed Hospital,  Mumbai</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3-fb mb-5-fb1 col-sm-6-fb">
+              <div class="patient-left">
+                <div class="p-name-date">
+                  <strong>Ajay Sawale </strong>
+                  <span>Mar 27, 2024</span>
+                </div>
+              </div>
+              <div class="patient-right">
+                <div class="our-team-fb">
+                  <div class="pic">
+                    <h2>Ajay Sawale | UnityMed</h2>
+                    <p>I got appointment for Dr. Suraj Nair for throat infection. I must say OPD department is very well organised and knowledgeable specially Shraddha madam in OPD helped me so much..thank u shraddha madam for your help and support. Thank you fortis hospital kalyan</p>
+                  </div>
+                  <div class="btn-doc-pat">
+                    <div class="doc-pat">
+                      <span>Treated BY: Dr. Suraj Nair</span>
+                    </div>
+                    <div class="doc-pat1">
+                      <span>ENT | UnityMed Hospital Mumbai</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row2-fb">
+            <div class="col-md-3-fb mb-5-fb1 col-sm-6-fb">
+              <div class="patient-left">
+                <div class="p-name-date">
+                  <strong>Ajay Sawale </strong>
+                  <span>Mar 27, 2024</span>
+                </div>
+              </div>
+              <div class="patient-right">
+                <div class="our-team-fb">
+                  <div class="pic">
+                    <h2>Ajay Sawale | UnityMed</h2>
+                    <p>I got appointment for Dr. Suraj Nair for throat infection. I must say OPD department is very well organised and knowledgeable specially Shraddha madam in OPD helped me so much..thank u shraddha madam for your help and support. Thank you fortis hospital kalyan</p>
+                  </div>
+                  <div class="btn-doc-pat">
+                    <div class="doc-pat">
+                      <span>Treated BY: Dr. Suraj Nair</span>
+                    </div>
+                    <div class="doc-pat1">
+                      <span>ENT | UnityMed Hospital, Mumbai</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3-fb mb-5-fb1 col-sm-6-fb">
+              <div class="patient-left">
+                <div class="p-name-date">
+                  <strong>Ajay Sawale </strong>
+                  <span>Mar 27, 2024</span>
+                </div>
+              </div>
+              <div class="patient-right">
+                <div class="our-team-fb">
+                  <div class="pic">
+                    <h2>Ajay Sawale | unitymed</h2>
+                    <p>I got appointment for Dr. Suraj Nair for throat infection. I must say OPD department is very well organised and knowledgeable specially Shraddha madam in OPD helped me so much..thank u shraddha madam for your help and support. Thank you fortis hospital kalyan</p>
+                  </div>
+                  <div class="btn-doc-pat">
+                    <div class="doc-pat">
+                      <span>Treated BY: Dr. Suraj Nair</span>
+                    </div>
+                    <div class="doc-pat1">
+                      <span>ENT | UnityMed Hospital,  Mumbai</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section about">
+            <h2>About Us</h2>
+            <p>
+              
+"Empowering health through compassion and expertise at UnityMed Hospital."
+<br>"Your trusted partner in quality care and wellness at UnityMed Hospital."
+            </p>
+          </div>
+          <div class="footer-section contact">
+            <h2>Contact Us</h2>
+            <p>Email: unitymed@hospital.com</p>
+            <p>Phone: +1234567890</p>
+          </div>
+          <div class="footer-section links">
+            <h2>Quick Links</h2>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Doctor</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; 2024 Multispecialty Hospital Management System
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          // Redirect to patient login page
+          document.getElementById('loginButton').addEventListener('click', function () {
+              window.location.href = '/patientLogin'; 
+          });
+    
+          // Redirect to signup page
+          document.getElementById('signupButton').addEventListener('click', function () {
+              window.location.href = '/signup'; 
+          });
+    
+          // Redirect to doctor login page
+          document.getElementById('doctorButton').addEventListener('click', function () {
+              window.location.href = '/doctorLogin'; 
+          });
+    
+          document.getElementById('homeButton').addEventListener('click', function () {
+              window.location.href = '/'; 
+          });
       });
-
-      // Redirect to signup page
-      document.getElementById('signupButton').addEventListener('click', function () {
-          window.location.href = '/signup'; 
-      });
-
-      // Redirect to doctor login page
-      document.getElementById('doctorButton').addEventListener('click', function () {
-          window.location.href = '/doctorLogin'; 
-      });
-
-      document.getElementById('homeButton').addEventListener('click', function () {
-          window.location.href = '/'; 
-      });
-  });
-</script>
-</body>
+    </script>
+  </body>
 </html>
+
+
+
+
