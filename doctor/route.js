@@ -36,6 +36,10 @@
   router.get('/patientReports', (req, res) => {
     res.render('patientReports');
   });
+  
+  router.get('/reportSuccessfull', (req, res) => {
+    res.render('reportSuccessfull');
+  });
 
 
   router.get('/', (req, res) => {
@@ -132,7 +136,7 @@
         await appointment.save();
 
         // Respond with a success message
-        res.status(200).send('Report saved successfully');
+        res.redirect('/reportSuccessfull')
 
     } catch (err) {
         console.error('Error saving report:', err);

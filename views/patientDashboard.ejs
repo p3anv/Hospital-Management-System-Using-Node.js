@@ -186,40 +186,42 @@
         </section>
 
         <section>
-            <div id="reports" style="display: none;">
-                <h2>Reports</h2>
-                <% if (reports && reports.length > 0) { %>
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Diagnosis</th>
-                        <th>Treatment</th>
-                        <th>Prescriptions</th>
-                        <th>Notes</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% reports.forEach(reportArray => { %>
-                        <% reportArray.forEach(report => { %>
-                          <tr>
+ <div id="reports" style="display: none;">
+    <h2>Reports</h2>
+    <% if (reports && reports.length > 0) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Diagnosis</th>
+                    <th>Treatment</th>
+                    <th>Prescriptions</th>
+                    <th>Notes</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% reports.forEach(reportArray => { %>
+                    <% reportArray.forEach(report => { %>
+                        <tr>
                             <td><%= report.diagnosis %></td>
                             <td><%= report.treatment %></td>
                             <td><%= report.prescriptions %></td>
                             <td><%= report.notes %></td>
-                          </tr>
-                        <% }); %>
-                      <% }); %>
-                    </tbody>
-                  </table>
-                <% } else { %>
-                  <p>No reports available.</p>
-                <% } %>
-              </div>
-              
-    
-    
-            
-            </div>
+                            <td>
+                                <form action="/getReportPDF/<%= report._id %>" method="get">
+                                    <button type="submit">Get PDF</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p>No reports available.</p>
+    <% } %>
+</div>
+
         </section>
         <footer>
             <div class="container">

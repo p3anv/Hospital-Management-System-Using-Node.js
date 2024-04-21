@@ -7,6 +7,10 @@ const Appointment = require('./models/appointment');
 const shortid = require('shortid');
 const Report = require('./models/report');
 const ObjectId = require('mongoose').Types.ObjectId;
+const pdf = require('html-pdf');
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
+
 
 // console.log(require('fs').readdirSync(path.join(__dirname, '../middleware')));
 const isAuthenticated = require('./middleware/isAuthenticated'); // Adjust the path accordingly
@@ -205,6 +209,47 @@ router.get('/reports', isAuthenticated, async (req, res) => {
     res.redirect('/patientDashboard?error=Error fetching reports');
   }
 });
+
+
+// Function to generate PDF
+router.get('/getReportPDF/:reportId', async (req, res) => {
+  const reportId = req.params.reportId;
+
+  try {
+      // Find the report in the database based on its ID
+      const report = await Report.findOne({ _id: reportId });
+
+      if (!report) {
+          return res.status(404).send('Report not found');
+      }
+
+      // Create a new PDF document
+      const doc = new PDFDocument();
+
+      // Set response headers
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'attachment; filename="report.pdf"');
+
+      // Pipe the PDF document to the response stream
+      doc.pipe(res);
+
+      // Add report details to the PDF
+      doc.fontSize(25).text('UnityMed Hospital', { align: 'center' });
+      doc.moveDown();
+      doc.fontSize(14).text('Diagnosis: ' + report.diagnosis);
+      doc.fontSize(14).text('Treatment: ' + report.treatment);
+      doc.fontSize(14).text('Prescriptions: ' + report.prescriptions);
+      doc.fontSize(14).text('Notes: ' + report.notes);
+
+      // Finalize the PDF
+      doc.end();
+
+  } catch (err) {
+      console.error('Error generating PDF:', err);
+      res.status(500).send('Error generating PDF');
+  }
+});
+
 
 
 router.get('/logout', (req, res) => {
